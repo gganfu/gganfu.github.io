@@ -33,3 +33,28 @@
 <div id="fruitHud" style="position:fixed;left:30px;top:458px;background:#18313ced;padding:10px;border-radius:10px;font-size:11px;max-width:280px;pointer-events:none"><div id="fruitInventory"></div><div id="fruitBonus" style="color:#ffd77f"></div><div>좋은 열매부터 먹이기 · 새로 생성되는 열매에 적용</div></div>
 <div id="wheelModal" class="modal" hidden><div class="panel" style="text-align:center"><h3>24시간 무료 돌림판</h3><p id="wheelTime"></p><div style="position:relative;width:240px;margin:16px auto"><div style="position:absolute;top:-14px;left:110px;z-index:2;color:white;font-size:26px">▼</div><div id="wheelDisc" style="height:240px;border:6px solid #ffdb8d;border-radius:50%;background:conic-gradient(#777 0deg 36deg,#c479e5 36deg 216deg,#ffd077 216deg 324deg,#ff835e 324deg 342deg,#f7a650 342deg 359.64deg,#73ddda 359.64deg 360deg);transition:transform 3s cubic-bezier(.12,.75,.15,1);position:relative"><span style="position:absolute;left:139.34px;top:36.01px;transform:translate(-50%,-50%);color:#14272b;font-weight:bold">1</span><span style="position:absolute;left:180.34px;top:162.20px;transform:translate(-50%,-50%);color:#14272b;font-weight:bold">2</span><span style="position:absolute;left:32.00px;top:114.00px;transform:translate(-50%,-50%);color:#14272b;font-weight:bold">3</span><span style="position:absolute;left:76.77px;top:40.94px;transform:translate(-50%,-50%);color:#14272b;font-weight:bold">4</span><span style="position:absolute;left:100.92px;top:33.05px;transform:translate(-50%,-50%);color:#14272b;font-weight:bold">5</span></div></div><p>1. 꽝 — 10%<br>2. 시크릿 열매 3개 — 50%<br>3. 디바인 열매 5개 — 30%<br>4. 어드민 열매 3개 — 5%<br>5. 어드민 열매 5개 — 4.9%<br>6. 진화 10번 — 0.1%</p><p style="font-size:11px">칸 크기는 당첨 확률과 같습니다. 6번은 0.1%의 아주 얇은 민트색 칸입니다.<br>진화 보상은 최대 Lv.135까지 적용됩니다.<br>오프라인에서는 PC 시간을 기준으로 24시간을 계산합니다.</p><p id="wheelResult" role="status"></p><button id="wheelSpin">무료로 돌리기</button><button id="wheelClose">돌아가기</button></div></div>
 <div id="travelHelp" hidden style="position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#123a4bdd;padding:12px;border-radius:12px;pointer-events:none">여행 · WASD 비행 · Q 상승 · C 하강 · F 착륙/이륙 · R 출발 섬</div><div id="error"></div><script src="./three.min.js"></script><script src="./language.js"></script><script src="./skills.js"></script><script src="./fruit.js"></script><script src="./eggs.js"></script><script src="./arena.js"></script><script src="./wheel.js"></script><script src="./travel.js"></script><script src="./game.js"></script></body></html>
+<style>
+#mobileJoystick{display:none;position:fixed;left:22px;bottom:24px;width:142px;height:142px;border-radius:50%;background:#0b263dcc;border:2px solid #ffffff55;z-index:30;touch-action:none}
+#mobileStick{position:absolute;left:39px;top:39px;width:60px;height:60px;border-radius:50%;background:#f4cc91dd;border:2px solid #fff;box-shadow:0 5px 15px #0006}
+#mobileButtons{display:none;position:fixed;right:20px;bottom:24px;z-index:30;gap:9px;flex-wrap:wrap;width:180px;justify-content:flex-end}
+#mobileButtons button{margin:0;padding:15px 18px;border-radius:50%;font-size:14px;min-width:62px;min-height:62px;touch-action:manipulation}
+#rotateNotice{display:none;position:fixed;inset:0;z-index:100;background:#071722f5;color:white;align-items:center;justify-content:center;text-align:center;padding:30px;font-size:20px;font-weight:900}
+@media (pointer:coarse){#mobileJoystick,#mobileButtons{display:flex}}
+@media (pointer:coarse) and (orientation:portrait){#rotateNotice{display:flex}}
+</style>
+<div id="mobileJoystick" aria-label="이동 조이스틱"><div id="mobileStick"></div></div>
+<div id="mobileButtons"><button id="mobileFire">🔥</button><button id="mobileFlight">🪽</button><button id="mobileFeed">먹이</button></div>
+<div id="rotateNotice">📱 휴대폰을 옆으로 돌려줘!<br><small>가로 화면에서 더 편하게 플레이할 수 있어.</small></div>
+<script>
+(()=>{
+  const keys=window.dragonMobileKeys;if(!keys)return;
+  const joy=document.getElementById('mobileJoystick'),stick=document.getElementById('mobileStick');let id=null;
+  function update(e){const r=joy.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;let dx=e.clientX-cx,dy=e.clientY-cy;const max=42,len=Math.hypot(dx,dy);if(len>max){dx=dx/len*max;dy=dy/len*max}stick.style.transform=`translate(${dx}px,${dy}px)`;keys.KeyA=dx<-16;keys.KeyD=dx>16;keys.KeyW=dy<-16;keys.KeyS=dy>16}
+  function clear(){id=null;stick.style.transform='';['KeyA','KeyD','KeyW','KeyS'].forEach(k=>keys[k]=false)}
+  joy.addEventListener('pointerdown',e=>{id=e.pointerId;joy.setPointerCapture(id);update(e)});joy.addEventListener('pointermove',e=>{if(e.pointerId===id)update(e)});joy.addEventListener('pointerup',clear);joy.addEventListener('pointercancel',clear);
+  document.getElementById('mobileFire').onclick=()=>window.dispatchEvent(new KeyboardEvent('keydown',{code:'Space'}));
+  document.getElementById('mobileFlight').onclick=()=>window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyF'}));
+  document.getElementById('mobileFeed').onclick=()=>window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyE'}));
+  const canvas=document.querySelector('canvas');let last=null;canvas.addEventListener('pointerdown',e=>{last={x:e.clientX,y:e.clientY}});canvas.addEventListener('pointermove',e=>{if(last&&e.pointerType==='touch'){window.dragonMobileCamera(e.clientX-last.x,e.clientY-last.y);last={x:e.clientX,y:e.clientY}}});canvas.addEventListener('pointerup',()=>last=null);canvas.addEventListener('pointercancel',()=>last=null);
+})();
+</script>

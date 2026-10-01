@@ -553,5 +553,7 @@
   }
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
   try{setWorld(JSON.parse(localStorage.getItem('ember3d-v1'))?.world);}catch{setWorld(1);}
+  window.dragonMobileKeys=keys;
+  window.dragonMobileCamera=(dx,dy)=>{yaw-=dx*.012;pitch=T.MathUtils.clamp(pitch+dy*.006,.14,1.1);};
   camera.position.set(10,6,16);ui();tick();
 })();
