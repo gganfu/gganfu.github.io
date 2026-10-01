@@ -43,7 +43,7 @@
 @media (pointer:coarse) and (orientation:portrait){#rotateNotice{display:flex}}
 </style>
 <div id="mobileJoystick" aria-label="이동 조이스틱"><div id="mobileStick"></div></div>
-<div id="mobileButtons"><button id="mobileFire">🔥</button><button id="mobileFlight">🪽</button><button id="mobileFeed">먹이</button><button id="mobileHide">👁️</button></div>
+<div id="mobileButtons"><button id="mobileFire">🔥</button><button id="mobileFlight">🪽</button><button id="mobileMenuToggle">☰</button><span id="mobileExtraButtons"><button id="mobileFeed">먹이</button><button id="mobileHide">👁️</button></span></div>
 <div id="rotateNotice">📱 휴대폰을 옆으로 돌려줘!<br><small>가로 화면에서 더 편하게 플레이할 수 있어.</small></div>
 <script>
 (()=>{
@@ -61,6 +61,17 @@
   setHidden(localStorage.getItem('dragon-hide-ui')==='1');
   const canvas=document.querySelector('canvas');let last=null;canvas.addEventListener('pointerdown',e=>{last={x:e.clientX,y:e.clientY}});canvas.addEventListener('pointermove',e=>{if(last&&e.pointerType==='touch'){window.dragonMobileCamera(e.clientX-last.x,e.clientY-last.y);last={x:e.clientX,y:e.clientY}}});canvas.addEventListener('pointerup',()=>last=null);canvas.addEventListener('pointercancel',()=>last=null);
 })();
+</script>
+<style>
+  #mobileButtons{bottom:92px!important;align-items:center}
+  #mobileExtraButtons{display:none;gap:9px;align-items:center}
+  #mobileExtraButtons.open{display:flex}
+  #mobileMenuToggle{background:#8fd8ff;color:#10202b}
+</style>
+<script>
+  const mobileMenuToggle=document.getElementById('mobileMenuToggle');
+  const mobileExtraButtons=document.getElementById('mobileExtraButtons');
+  mobileMenuToggle.onclick=()=>{mobileExtraButtons.classList.toggle('open');mobileMenuToggle.textContent=mobileExtraButtons.classList.contains('open')?'✕':'☰'};
 </script>
 <style>
 #mobileRecommendation{display:none;position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:120;width:min(90vw,420px);padding:16px 18px;border:1px solid #ffffff55;border-radius:16px;background:#102d39f5;color:#fff;text-align:center;box-shadow:0 10px 30px #0006}
