@@ -24,3 +24,4 @@ function undo(){const m=moves.pop();if(!m||finished)return;board[m.from.r][m.fro
 function toast(v){const t=document.getElementById('toast');t.textContent=v;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}document.getElementById('newGame').onclick=start;document.getElementById('undo').onclick=undo;['whiteName','blackName'].forEach(id=>document.getElementById(id).oninput=render);start();
 const localTap=tap;tap=(r,c)=>{if(finished||(myColor&&myColor!==turn))return;localTap(r,c);sync()};const localUndo=undo;document.getElementById('undo').onclick=()=>{localUndo();sync()};document.getElementById('newGame').onclick=()=>{start();sync()};document.getElementById('joinRoom').onclick=joinRoom;document.getElementById('roomInput').addEventListener('keydown',e=>{if(e.key==='Enter')joinRoom()});createRoom();render();
 </script></body></html>
+<script>myColor=null;</script>
