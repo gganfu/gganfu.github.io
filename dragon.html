@@ -43,7 +43,7 @@
 @media (pointer:coarse) and (orientation:portrait){#rotateNotice{display:flex}}
 </style>
 <div id="mobileJoystick" aria-label="이동 조이스틱"><div id="mobileStick"></div></div>
-<div id="mobileButtons"><button id="mobileFire">🔥</button><button id="mobileFlight">🪽</button><button id="mobileFeed">먹이</button></div>
+<div id="mobileButtons"><button id="mobileFire">🔥</button><button id="mobileFlight">🪽</button><button id="mobileFeed">먹이</button><button id="mobileHide">👁️</button></div>
 <div id="rotateNotice">📱 휴대폰을 옆으로 돌려줘!<br><small>가로 화면에서 더 편하게 플레이할 수 있어.</small></div>
 <script>
 (()=>{
@@ -55,6 +55,10 @@
   document.getElementById('mobileFire').onclick=()=>window.dispatchEvent(new KeyboardEvent('keydown',{code:'Space'}));
   document.getElementById('mobileFlight').onclick=()=>window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyF'}));
   document.getElementById('mobileFeed').onclick=()=>window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyE'}));
+  const hiddenIds=['hud','actions','eggHud','mini','skillHud','moneyHud','fruitHud','worldName','battleOpen','worldSwitch','nursery'];
+  const setHidden=hidden=>{hiddenIds.forEach(id=>{const el=document.getElementById(id);if(el)el.style.visibility=hidden?'hidden':''});document.getElementById('mobileHide').textContent=hidden?'👁️‍🗨️':'👁️';localStorage.setItem('dragon-hide-ui',hidden?'1':'0');};
+  document.getElementById('mobileHide').onclick=()=>setHidden(localStorage.getItem('dragon-hide-ui')!=='1');
+  setHidden(localStorage.getItem('dragon-hide-ui')==='1');
   const canvas=document.querySelector('canvas');let last=null;canvas.addEventListener('pointerdown',e=>{last={x:e.clientX,y:e.clientY}});canvas.addEventListener('pointermove',e=>{if(last&&e.pointerType==='touch'){window.dragonMobileCamera(e.clientX-last.x,e.clientY-last.y);last={x:e.clientX,y:e.clientY}}});canvas.addEventListener('pointerup',()=>last=null);canvas.addEventListener('pointercancel',()=>last=null);
 })();
 </script>
