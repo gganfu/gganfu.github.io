@@ -22,13 +22,13 @@
       display: block;
       width: 90%;
       max-width: 500px;
-      margin: 25px auto 40px;
+      margin: 20px auto;
       padding: 30px 0;
       border-radius: 20px;
       background: white;
       color: #222;
       text-decoration: none;
-      font-size: 25px;
+      font-size: 23px;
       font-weight: bold;
       box-shadow: 0 5px 15px #999;
     }
@@ -37,13 +37,18 @@
       background: #d7efff;
     }
 
-    .thumbnail {
-      padding: 35px;
-      font-size: 70px;
+    .icon {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 65px;
+    }
+
+    .mobile {
+      background: #dff5ff;
     }
 
     .board {
-      background: #b87943;
+      background: #ffe7b5;
     }
   </style>
 </head>
@@ -52,12 +57,17 @@
   <h1>깐퓨 게임 놀이터</h1>
 
   <a class="game" href="dragon.html">
-    <div class="thumbnail">🐉</div>
-    드래곤 게임
+    <span class="icon">🐉</span>
+    드래곤 게임 컴퓨터용
   </a>
 
-  <a class="game" href="boardgames.html">
-    <div class="thumbnail board">🎲</div>
+  <a class="game mobile" href="dragon-mobile.html">
+    <span class="icon">📱</span>
+    드래곤 게임 모바일용
+  </a>
+
+  <a class="game board" href="boardgames.html">
+    <span class="icon">🎲</span>
     보드게임
   </a>
 </body>
