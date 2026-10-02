@@ -1,4 +1,23 @@
-<a href="omok.html">오목</a>
-<a href="chess.html">체스</a>
-<a href="janggi.html">장기</a>
-<a href="baduk.html">바둑</a>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>보드게임 선택</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f3eadc;color:#16232c;font-family:system-ui,sans-serif}.wrap{width:min(100%,900px);margin:auto;padding:22px 16px 50px}.hero{overflow:hidden;border-radius:24px;background:#fffaf1;box-shadow:0 8px 25px #63452b33}.hero img{display:block;width:100%;height:280px;object-fit:contain;background:#182438}.heroText{padding:18px;text-align:center}.heroText h1{margin:0 0 6px;font-size:clamp(28px,6vw,44px)}.heroText p{margin:0;color:#66757a}.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}.game{display:block;overflow:hidden;border-radius:22px;background:#fffaf1;color:#16232c;text-decoration:none;box-shadow:0 8px 20px #63452b33;transition:transform .15s}.game:active{transform:scale(.97)}.game img{display:block;width:100%;height:260px;object-fit:contain;background:#182438}.gameText{padding:16px}.gameText h2{margin:0;font-size:24px}.gameText p{margin:6px 0 0;color:#71808a;font-size:13px}.back{display:block;margin:25px auto 0;width:min(100%,500px);padding:15px;border-radius:14px;background:#16232c;color:white;text-align:center;text-decoration:none;font-weight:900}@media(max-width:560px){.hero img{height:240px}.games{grid-template-columns:1fr}.game img{height:300px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero"><img src="boardgames.png" alt="보드게임 사진"><div class="heroText"><h1>보드게임 선택</h1><p>하고 싶은 게임을 큰 버튼으로 눌러봐!</p></div></section>
+    <section class="games">
+      <a class="game" href="chess.html"><img src="chess.png" alt="체스"><div class="gameText"><h2>체스</h2><p>체스 말을 움직여 상대를 이기기</p></div></a>
+      <a class="game" href="omok.html"><img src="omok.png" alt="오목"><div class="gameText"><h2>오목</h2><p>검은 돌과 흰 돌로 대결하기</p></div></a>
+      <a class="game" href="janggi.html"><img src="janggi.png" alt="장기"><div class="gameText"><h2>장기</h2><p>초와 한으로 장기 두기</p></div></a>
+      <a class="game" href="baduk.html"><img src="baduk.png" alt="바둑"><div class="gameText"><h2>바둑</h2><p>바둑판에 돌을 놓아보기</p></div></a>
+    </section>
+    <a class="back" href="index.html">← 첫 화면으로 돌아가기</a>
+  </main>
+</body>
+</html>
