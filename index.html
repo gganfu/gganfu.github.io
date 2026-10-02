@@ -3,19 +3,113 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>깐퓨 게임 놀이터</title>
+  <title>깐퓨 알까기 놀이터</title>
+
   <style>
-    *{box-sizing:border-box}body{margin:0;padding:25px 0 50px;background:#eef2f5;font-family:sans-serif;text-align:center}h1{margin:10px 0 30px}.game{display:block;width:90%;max-width:560px;margin:22px auto;padding:0 0 22px;border-radius:22px;background:white;color:#222;text-decoration:none;font-size:24px;font-weight:bold;overflow:hidden;box-shadow:0 5px 15px #999}.game:active{transform:scale(.98)}.game img{display:block;width:100%;height:240px;object-fit:cover;margin-bottom:14px}.game span{display:block;font-size:13px;color:#667;margin-top:7px;font-weight:normal}
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 34px 16px 60px;
+      background: linear-gradient(145deg, #fff6d9, #e9f2ef);
+      font-family: system-ui, sans-serif;
+      color: #17212b;
+      text-align: center;
+    }
+
+    .wrap {
+      width: min(680px, 100%);
+      margin: auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: #c45349;
+      letter-spacing: .16em;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 7vw, 58px);
+      letter-spacing: -.08em;
+    }
+
+    header p {
+      color: #71808d;
+      margin: 10px 0 30px;
+    }
+
+    .card {
+      display: block;
+      margin: 18px auto;
+      padding: 28px 22px;
+      border: 1px solid #eadfc9;
+      border-radius: 24px;
+      background: #fffaf0;
+      color: #17212b;
+      text-decoration: none;
+      box-shadow: 0 14px 30px #53625b22;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .icon {
+      font-size: 56px;
+    }
+
+    .card h2 {
+      margin: 12px 0 5px;
+      font-size: 26px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #71808d;
+      font-size: 14px;
+    }
+
+    .download {
+      background: #edf5ff;
+    }
+
+    footer {
+      margin-top: 28px;
+      color: #8a969e;
+      font-size: 12px;
+    }
   </style>
 </head>
+
 <body>
-  <h1>🎮 깐퓨 게임 놀이터</h1>
-  <a class="game" href="dragon.html"><img src="dragon-pc.png" alt="드래곤 컴퓨터용">드래곤 게임 컴퓨터용<span>컴퓨터에서 플레이하기</span></a>
-  <a class="game" href="dragon-mobile.html"><img src="dragon-mobile.png" alt="드래곤 모바일용">드래곤 게임 모바일용<span>휴대폰에서 플레이하기</span></a>
-  <a class="game" href="boardgames.html"><img src="boardgames.png" alt="보드게임">보드게임<span>오목 · 체스 · 장기 · 바둑</span></a>
+  <main class="wrap">
+    <header>
+      <p class="eyebrow">GGANFU GAME PLAYGROUND</p>
+      <h1>🥚 알까기 놀이터</h1>
+      <p>친구와 한 화면에서 즐기는 2인 알까기 게임</p>
+    </header>
+
+    <a class="card" href="alfakgi.html">
+      <div class="icon">🎯</div>
+      <h2>알까기 챔피언스</h2>
+      <p>브라우저에서 바로 플레이하기</p>
+    </a>
+
+    <a class="card download" href="Alkagi-Champions-Offline.exe" download>
+      <div class="icon">⬇️</div>
+      <h2>오프라인 실행파일</h2>
+      <p>다운로드 후 인터넷 없이 Windows에서 플레이하기</p>
+    </a>
+
+    <footer>
+      Made for friends · 2 Player Local Battle
+    </footer>
+  </main>
 </body>
 </html>
-<style>
-  .game img{height:420px;object-fit:contain;background:#182438}
-  @media(max-width:520px){.game img{height:360px}}
-</style>
