@@ -2,73 +2,25 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
   <title>깐퓨 게임 놀이터</title>
-
   <style>
-    body {
-      margin: 0;
-      background: #eef2f5;
-      font-family: sans-serif;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 30px 0;
-    }
-
-    .game {
-      display: block;
-      width: 90%;
-      max-width: 500px;
-      margin: 20px auto;
-      padding: 30px 0;
-      border-radius: 20px;
-      background: white;
-      color: #222;
-      text-decoration: none;
-      font-size: 23px;
-      font-weight: bold;
-      box-shadow: 0 5px 15px #999;
-    }
-
-    .game:active {
-      background: #d7efff;
-    }
-
-    .icon {
-      display: block;
-      margin-bottom: 12px;
-      font-size: 65px;
-    }
-
-    .mobile {
-      background: #dff5ff;
-    }
-
-    .board {
-      background: #ffe7b5;
-    }
+    *{box-sizing:border-box}body{margin:0;background:#101827;color:#f5f7fb;font-family:system-ui,-apple-system,sans-serif}.top{padding:42px 18px 28px;background:radial-gradient(circle at 12% 0,#31547b,transparent 40%),linear-gradient(135deg,#101827,#1b283d)}header{width:min(1100px,100%);margin:auto}.eyebrow{color:#8fd8ff;font-size:12px;font-weight:900;letter-spacing:.18em}h1{margin:8px 0;font-size:clamp(34px,7vw,62px)}.subtitle{margin:0;color:#c6d1e0}.wrap{width:min(1100px,100%);margin:auto;padding:28px 18px 60px}.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:4px 0 18px}.section-title h2{margin:0;font-size:24px}.section-title span{color:#9eacc0;font-size:13px}.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{overflow:hidden;border:1px solid #ffffff18;border-radius:22px;background:#182438;box-shadow:0 12px 30px #0004}.thumb{height:170px;display:grid;place-items:center;font-size:70px;background:linear-gradient(135deg,var(--a),var(--b));position:relative}.thumb:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#ffffff25,transparent 55%)}.thumb span{position:relative;z-index:1;filter:drop-shadow(0 8px 8px #0005)}.info{padding:17px}.info h3{margin:0 0 7px;font-size:21px}.info p{min-height:42px;margin:0;color:#aebbd0;font-size:13px;line-height:1.55}.play{display:block;margin-top:16px;padding:12px;border-radius:12px;background:#8fd8ff;color:#07121f;text-align:center;text-decoration:none;font-weight:900}.play:active{transform:scale(.98)}@media(max-width:820px){.games{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.top{padding-top:30px}.games{grid-template-columns:1fr}.thumb{height:145px}.wrap{padding-top:22px}}
   </style>
 </head>
-
 <body>
-  <h1>깐퓨 게임 놀이터</h1>
-
-  <a class="game" href="dragon.html">
-    <span class="icon">🐉</span>
-    드래곤 게임 컴퓨터용
-  </a>
-
-  <a class="game mobile" href="dragon-mobile.html">
-    <span class="icon">📱</span>
-    드래곤 게임 모바일용
-  </a>
-
-  <a class="game board" href="boardgames.html">
-    <span class="icon">🎲</span>
-    보드게임
-  </a>
+  <div class="top"><header><div class="eyebrow">GGANFU GAME PLAYGROUND</div><h1>게임 놀이터</h1><p class="subtitle">하고 싶은 게임을 골라서 플레이해봐!</p></header></div>
+  <main class="wrap">
+    <div class="section-title"><h2>게임 목록</h2><span>총 6개 게임</span></div>
+    <section class="games">
+      <article class="card"><div class="thumb" style="--a:#184d68;--b:#b87943"><span>🐉</span></div><div class="info"><h3>Dragon of legendary</h3><p>드래곤을 키우고 계곡을 모험하는 게임</p><a class="play" href="dragon.html">게임 시작</a></div></article>
+      <article class="card"><div class="thumb" style="--a:#5c2c71;--b:#d89b55"><span>🎲</span></div><div class="info"><h3>보드게임 모음</h3><p>오목, 체스, 장기, 바둑을 골라서 플레이</p><a class="play" href="boardgames.html">게임 고르기</a></div></article>
+      <article class="card"><div class="thumb" style="--a:#123d50;--b:#d89b55"><span>⚫</span></div><div class="info"><h3>오목</h3><p>친구와 번갈아 돌을 놓아보자</p><a class="play" href="omok.html">게임 시작</a></div></article>
+      <article class="card"><div class="thumb" style="--a:#4a2f20;--b:#dca968"><span>♟</span></div><div class="info"><h3>체스</h3><p>흰색과 검은색 말로 대결하기</p><a class="play" href="chess.html">게임 시작</a></div></article>
+      <article class="card"><div class="thumb" style="--a:#163b61;--b:#ae352b"><span>將</span></div><div class="info"><h3>장기</h3><p>초와 한이 되어 장기판에서 대결하기</p><a class="play" href="janggi.html">게임 시작</a></div></article>
+      <article class="card"><div class="thumb" style="--a:#5b3926;--b:#d9a568"><span>●</span></div><div class="info"><h3>바둑</h3><p>바둑판에 흑돌과 백돌을 놓아보자</p><a class="play" href="baduk.html">게임 시작</a></div></article>
+    </section>
+  </main>
 </body>
 </html>
