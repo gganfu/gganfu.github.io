@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>달려라 말아!</title>
+<link rel="stylesheet" href="horse-race.css?v=pause-1">
+</head>
+<body>
+<main class="app">
+  <canvas id="race3d" aria-label="표정이 있는 3D 말경주 경기장"></canvas>
+  <header class="topbar"><a href="index.html">← 놀이터로</a><span>달려라 말아! <small>30초 대소동</small></span><button id="settingsToggle" aria-expanded="true">설정 접기</button></header>
+  <aside class="panel" id="settingsPanel">
+    <div class="eyebrow">READY, SET, CHAOS!</div><h1>달려라 말아!</h1>
+    <p class="sub">큰 얼굴, 열 가지 사건, 끝까지 모르는 승부.<br>각자 자기 레인에서 약 30초 동안 달려요.</p>
+    <div class="section-title">오늘의 선수 <span id="runnerCount"></span></div><div id="runnerList"></div>
+    <button class="add" id="addBtn">＋ 말 추가</button>
+    <div class="setting-title">승리 규칙</div><div class="button-pair" id="modeButtons"><button data-mode="first" class="active">첫 도착 우승</button><button data-mode="last">마지막 도착 우승</button></div>
+    <div class="setting-title">카메라 시점 <small>경기 중에도 바꿀 수 있어요</small></div><div class="button-pair" id="viewButtons"><button data-view="side">옆에서 보기</button><button data-view="angle" class="active">비스듬한 3D</button></div>
+    <button class="start" id="startBtn">경주 시작</button><button class="reset" id="resetBtn">기본 설정으로</button>
+    <details class="event-guide"><summary>10가지 이벤트 살펴보기</summary><div id="eventLegend"></div></details>
+    <p class="info">종류·색상은 외형만 달라요. 모든 말의 기본 조건은 같고, 이벤트 대상과 달리기 흐름은 매 경기 무작위예요.</p>
+  </aside>
+  <section class="race-hud" aria-label="경기 상황"><div><span id="racePhase">출발 준비</span><strong id="clock">00.0</strong></div><div class="progress"><i id="progressFill"></i></div><small id="raceRule">첫 도착 우승 · 약 30초</small><button id="pauseBtn" type="button" aria-pressed="false" disabled>멈추기</button></section>
+  <div id="labels" aria-hidden="true"></div>
+  <div id="eventToast" role="status" aria-live="polite"></div>
+  <div class="race-bottom"><button id="quickView">시점: 비스듬한 3D</button><div id="leaderText">선수들을 골라주세요</div><button id="againBtn" hidden>다시 달리기</button></div>
+  <section class="finish-card" id="finishCard" hidden><div class="eyebrow">PHOTO FINISH</div><h2 id="winnerText"></h2><p id="finishSummary"></p><ol id="finishList"></ol><button id="replayBtn">한 판 더!</button><button class="quiet" id="editBtn">선수 변경</button></section>
+  <div id="countdown" hidden></div>
+</main>
+<script src="three.min.js"></script><script src="race-engine.js"></script><script src="horse-race.js?v=pause-title-1"></script>
+</body></html>
