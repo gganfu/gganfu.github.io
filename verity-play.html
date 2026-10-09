@@ -306,15 +306,19 @@
     node.append(label, document.createTextNode(text)); messages.append(node);
     if (user || atBottom || messages.children.length <= 2) messages.scrollTop = messages.scrollHeight;
   }
-  function speak(text) {
-    if (!sound || !('speechSynthesis' in window)) return;
+  function speak(text, onFinished) {
+    if (!sound || !('speechSynthesis' in window)) return false;
     const currentSpeech = ++speechId;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text); utterance.lang = 'ko-KR'; utterance.rate = 1; utterance.pitch = transformed ? .65 : 1.02;
     const voice = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('ko')); if (voice) utterance.voice = voice;
     utterance.onstart = () => { if (currentSpeech === speechId) stage.classList.add('talking'); };
-    utterance.onend = utterance.onerror = () => { if (currentSpeech === speechId) stage.classList.remove('talking'); };
+    utterance.onend = utterance.onerror = () => {
+      if (currentSpeech === speechId) stage.classList.remove('talking');
+      if (onFinished) onFinished();
+    };
     window.speechSynthesis.speak(utterance);
+    return true;
   }
   function reply(text) { $('bubble').textContent = text; addMessage(text); speak(text); }
   function recover() {
@@ -346,13 +350,22 @@
     if (recognition && listening) recognition.abort();
     stage.classList.remove('transformed', 'talking');
     $('mood').textContent = '게임 종료'; $('count').textContent = '나쁜 말 44회로 게임이 종료됐어요.';
-    $('bubble').textContent = '나쁜 말을 44번 써서 오늘 놀이는 여기까지! 다음에는 좋은 말로 이야기하자.';
+    $('bubble').textContent = '당신은 나가졌습니다';
     addMessage($('bubble').textContent);
     $('status').textContent = '게임이 종료됐어요.';
     input.disabled = true;
     document.querySelectorAll('button').forEach(button => { button.disabled = true; });
-    if (typeof window.VerityQuit === 'function') window.VerityQuit();
-    else if (typeof window.close === 'function') window.close();
+    let hasExited = false, exitTimer;
+    const leave = () => {
+      if (hasExited) return;
+      hasExited = true; clearTimeout(exitTimer);
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      if (typeof window.VerityQuit === 'function') window.VerityQuit();
+      else window.location.replace('index.html');
+    };
+    // Ordinary browser tabs cannot close themselves. Return to the playground after the announcement.
+    exitTimer = setTimeout(leave, sound && window.speechSynthesis ? 8000 : 1800);
+    speak($('bubble').textContent, leave);
   }
   function send(text) {
     if (ended) return;
